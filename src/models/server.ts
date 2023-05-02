@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import routesProduct from '../routes/product';
 import routesUser from '../routes/user';
+import { Product } from './product';
 
 class Server {
 
@@ -13,6 +14,7 @@ class Server {
         this.listen();
         this.midlewares();
         this.routes();
+        this.dbConnect();
     }
 
     listen() {
@@ -28,6 +30,15 @@ class Server {
 
     midlewares() {
         this.app.use(express.json());
+    }
+
+    async dbConnect() {
+        try {
+            await Product.sync()
+            
+        } catch (error) {
+            console.log("La coneccion con la base de datos a fracasado.", error);
+        }
     }
 
 }
