@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import routesProduct from '../routes/product';
 import routesUser from '../routes/user';
 import { Product } from './product';
+import { User } from './user';
 
 class Server {
 
@@ -35,7 +36,7 @@ class Server {
     async dbConnect() {
         try {
             await Product.sync()
-            
+            await User.sync()
         } catch (error) {
             console.log("La coneccion con la base de datos a fracasado.", error);
         }

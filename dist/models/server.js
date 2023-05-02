@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const product_1 = __importDefault(require("../routes/product"));
 const user_1 = __importDefault(require("../routes/user"));
 const product_2 = require("./product");
+const user_2 = require("./user");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -41,6 +42,7 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield product_2.Product.sync();
+                yield user_2.User.sync();
             }
             catch (error) {
                 console.log("La coneccion con la base de datos a fracasado.", error);
