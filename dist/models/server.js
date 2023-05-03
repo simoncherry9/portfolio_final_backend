@@ -15,9 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const product_1 = __importDefault(require("../routes/product"));
+const aptitudes_1 = __importDefault(require("../routes/aptitudes"));
 const user_1 = __importDefault(require("../routes/user"));
+const experiencia_1 = __importDefault(require("../routes/experiencia"));
+const persona_1 = __importDefault(require("../routes/persona"));
+const educacion_1 = __importDefault(require("../routes/educacion"));
+const proyectos_1 = __importDefault(require("../routes/proyectos"));
+const proyectos_2 = require("./proyectos");
 const product_2 = require("./product");
+const educacion_2 = require("./educacion");
 const user_2 = require("./user");
+const persona_2 = require("./persona");
+const aptitudes_2 = require("./aptitudes");
+const experiencia_2 = require("./experiencia");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -35,6 +45,11 @@ class Server {
     routes() {
         this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
+        this.app.use('/api/persona', persona_1.default);
+        this.app.use('/api/aptitudes', aptitudes_1.default);
+        this.app.use('/api/experiencia', experiencia_1.default);
+        this.app.use('/api/educacion', educacion_1.default);
+        this.app.use('/api/proyectos', proyectos_1.default);
     }
     midlewares() {
         // Parseo body
@@ -45,11 +60,16 @@ class Server {
     dbConnect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield proyectos_2.Proyectos.sync();
+                yield educacion_2.Educacion.sync();
+                yield experiencia_2.Experiencia.sync();
+                yield aptitudes_2.Aptitudes.sync();
+                yield persona_2.Persona.sync();
                 yield product_2.Product.sync();
                 yield user_2.User.sync();
             }
             catch (error) {
-                console.log("La coneccion con la base de datos a fracasado.", error);
+                console.log("La conección con la base de datos a fracasado.", error);
             }
         });
     }
