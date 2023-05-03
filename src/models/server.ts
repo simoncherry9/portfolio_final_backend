@@ -1,5 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors'
+
+// Importamos rutas
 import routesProduct from '../routes/product';
 import routesAptitudes from '../routes/aptitudes';
 import routesUser from '../routes/user';
@@ -7,6 +9,8 @@ import routesExperiencia from '../routes/experiencia'
 import routesPersona from '../routes/persona';
 import routesEducacion from '../routes/educacion';
 import routesProyectos from '../routes/proyectos';
+
+// Importamos modelos
 import { Proyectos } from './proyectos';
 import { Product } from './product';
 import { Educacion } from './educacion';

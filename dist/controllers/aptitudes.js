@@ -9,10 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAptitudes = void 0;
+exports.newAptitud = exports.getAptitudes = void 0;
 const aptitudes_1 = require("../models/aptitudes");
 const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listAptitudes = yield aptitudes_1.Aptitudes.findAll();
     res.json(listAptitudes);
 });
 exports.getAptitudes = getAptitudes;
+const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, description } = req.body;
+    try {
+        // Guardamos el usuario en la base de datos
+        yield aptitudes_1.Aptitudes.create({
+            name: name,
+            description: description
+        });
+        res.json({
+            msg: "Aptitud " + name + " cargada de manera exitosa",
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrio un error al querer cargar la nueva aptitud",
+            error
+        });
+    }
+});
+exports.newAptitud = newAptitud;

@@ -7,6 +7,6 @@ const express_1 = require("express");
 const proyectos_1 = require("../controllers/proyectos");
 const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
-// Protegiendo ruta /personas
+// Protegiendo ruta /proyectos
 router.get('/', validate_token_1.default, proyectos_1.getProyectos);
 exports.default = router;

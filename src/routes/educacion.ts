@@ -4,7 +4,7 @@ import validateToken from './validate-token';
 
 const router = Router();
 
-// Protegiendo ruta /personas
+// Protegiendo ruta /educacion
 router.get('/',validateToken , getEducaciones)
 
 export default router;

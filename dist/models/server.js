@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+// Importamos rutas
 const product_1 = __importDefault(require("../routes/product"));
 const aptitudes_1 = __importDefault(require("../routes/aptitudes"));
 const user_1 = __importDefault(require("../routes/user"));
@@ -21,6 +22,7 @@ const experiencia_1 = __importDefault(require("../routes/experiencia"));
 const persona_1 = __importDefault(require("../routes/persona"));
 const educacion_1 = __importDefault(require("../routes/educacion"));
 const proyectos_1 = __importDefault(require("../routes/proyectos"));
+// Importamos modelos
 const proyectos_2 = require("./proyectos");
 const product_2 = require("./product");
 const educacion_2 = require("./educacion");
