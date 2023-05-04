@@ -9,4 +9,5 @@ const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 // Protegiendo ruta /aptitudes
 router.get('/', validate_token_1.default, aptitudes_1.getAptitudes);
+router.post('/', aptitudes_1.newAptitud);
 exports.default = router;
