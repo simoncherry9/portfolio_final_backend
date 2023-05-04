@@ -5,7 +5,7 @@ import validateToken from './validate-token';
 const router = Router();
 
 // Protegiendo ruta /personas
-router.get('/',validateToken , getPersonas)
-router.post('/', newPersona);
+router.get('/', getPersonas)
+router.post('/',validateToken, newPersona);
 
 export default router;

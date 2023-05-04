@@ -5,7 +5,7 @@ import validateToken from './validate-token';
 const router = Router();
 
 // Protegiendo ruta /aptitudes
-router.get('/',validateToken , getAptitudes)
-router.post('/', newAptitud);
+router.get('/' ,  getAptitudes)
+router.post('/', validateToken, newAptitud);
 
 export default router;

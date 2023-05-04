@@ -5,6 +5,6 @@ import validateToken from './validate-token';
 const router = Router();
 
 // Protegiendo ruta /products
-router.get('/',validateToken , getProducts)
+router.get('/', getProducts)
 
 export default router;

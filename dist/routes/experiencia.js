@@ -8,6 +8,6 @@ const experiencia_1 = require("../controllers/experiencia");
 const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 // Protegiendo ruta /experiencia
-router.get('/', validate_token_1.default, experiencia_1.getExperiencias);
-router.post('/', experiencia_1.newExperiencia);
+router.get('/', experiencia_1.getExperiencias);
+router.post('/', validate_token_1.default, experiencia_1.newExperiencia);
 exports.default = router;

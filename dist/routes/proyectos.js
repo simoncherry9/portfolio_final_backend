@@ -8,5 +8,6 @@ const proyectos_1 = require("../controllers/proyectos");
 const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 // Protegiendo ruta /proyectos
-router.get('/', validate_token_1.default, proyectos_1.getProyectos);
+router.get('/', proyectos_1.getProyectos);
+router.post('/', validate_token_1.default, proyectos_1.newProyecto);
 exports.default = router;

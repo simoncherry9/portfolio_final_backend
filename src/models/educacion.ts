@@ -14,6 +14,6 @@ export const Educacion = sequelize.define('educacion', {
         type: DataTypes.STRING
     }, 
     fechaFin: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
     }
 })

@@ -5,8 +5,8 @@ import validateToken from './validate-token';
 const router = Router();
 
 // Protegiendo ruta /experiencia
-router.get('/', validateToken, getExperiencias)
-router.post('/', newExperiencia);
+router.get('/',  getExperiencias)
+router.post('/', validateToken, newExperiencia);
 
 
 export default router;

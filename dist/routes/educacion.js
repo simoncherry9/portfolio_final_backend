@@ -8,5 +8,6 @@ const educacion_1 = require("../controllers/educacion");
 const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 // Protegiendo ruta /educacion
-router.get('/', validate_token_1.default, educacion_1.getEducaciones);
+router.get('/', educacion_1.getEducaciones);
+router.post('/', validate_token_1.default, educacion_1.newEducacion);
 exports.default = router;

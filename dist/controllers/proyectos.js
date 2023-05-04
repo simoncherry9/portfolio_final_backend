@@ -9,10 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProyectos = void 0;
+exports.newProyecto = exports.getProyectos = void 0;
 const proyectos_1 = require("../models/proyectos");
 const getProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProyectos = yield proyectos_1.Proyectos.findAll();
     res.json(listProyectos);
 });
 exports.getProyectos = getProyectos;
+const newProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, description } = req.body;
+    try {
+        // Guardamos el proyecto en la base de datos
+        yield proyectos_1.Proyectos.create({
+            name: name,
+            description: description
+        });
+        res.json({
+            msg: "Proyecto " + name + " cargado de manera exitosa",
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrio un error al querer cargar la nueva aptitud",
+            error
+        });
+    }
+});
+exports.newProyecto = newProyecto;

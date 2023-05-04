@@ -29,3 +29,4 @@ export const newExperiencia = async (req: Request, res: Response) => {
             error
         })
     }
+}
