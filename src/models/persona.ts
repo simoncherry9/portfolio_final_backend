@@ -17,21 +17,21 @@ export const Persona = sequelize.define('persona', {
         type: DataTypes.STRING
     },
     fechaNacimiento: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
     },
     estadoCivil: {
         type: DataTypes.STRING
     },
     email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     telefono: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     profesion: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     rol: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     }
 })

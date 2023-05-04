@@ -9,4 +9,5 @@ const validate_token_1 = __importDefault(require("./validate-token"));
 const router = (0, express_1.Router)();
 // Protegiendo ruta /personas
 router.get('/', validate_token_1.default, persona_1.getPersonas);
+router.post('/', persona_1.newPersona);
 exports.default = router;

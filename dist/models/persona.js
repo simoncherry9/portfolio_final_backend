@@ -22,21 +22,21 @@ exports.Persona = connection_1.default.define('persona', {
         type: sequelize_1.DataTypes.STRING
     },
     fechaNacimiento: {
-        type: sequelize_1.DataTypes.DATE
+        type: sequelize_1.DataTypes.STRING
     },
     estadoCivil: {
         type: sequelize_1.DataTypes.STRING
     },
     email: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING
     },
     telefono: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING
     },
     profesion: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING
     },
     rol: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING
     }
 });
