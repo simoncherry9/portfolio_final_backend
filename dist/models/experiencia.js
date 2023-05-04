@@ -22,6 +22,6 @@ exports.Experiencia = connection_1.default.define('experiencia', {
         type: sequelize_1.DataTypes.STRING,
     },
     fechaFin: {
-        type: sequelize_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.STRING,
     }
 });

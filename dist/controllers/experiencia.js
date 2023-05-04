@@ -9,10 +9,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getExperiencias = void 0;
+exports.newExperiencia = exports.getExperiencias = void 0;
 const experiencia_1 = require("../models/experiencia");
 const getExperiencias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listExperiencias = yield experiencia_1.Experiencia.findAll();
     res.json(listExperiencias);
 });
 exports.getExperiencias = getExperiencias;
+const newExperiencia = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { empresa, puesto, descripcion, fechaFin } = req.body;
+    try {
+        // Guardamos el usuario en la base de datos
+        yield experiencia_1.Experiencia.create({
+            empresa: empresa,
+            puesto: puesto,
+            descripcion: descripcion,
+            fechaFin: fechaFin,
+        });
+        res.json({
+            msg: "Puesto en la empresa " + empresa + " cargado de manera exitosa",
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrio un error al querer cargar la nueva persona",
+            error
+        });
+    }
+});
+exports.newExperiencia = newExperiencia;

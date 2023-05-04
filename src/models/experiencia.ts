@@ -17,6 +17,6 @@ export const Experiencia = sequelize.define('experiencia', {
         type: DataTypes.STRING,
     },
     fechaFin: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     }
 })
