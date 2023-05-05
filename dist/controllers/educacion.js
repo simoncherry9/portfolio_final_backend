@@ -31,7 +31,7 @@ const newEducacion = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     catch (error) {
         res.status(400).json({
-            msg: "Ocurrio un error al querer cargar la nueva aptitud",
+            msg: "Ocurrio un error al querer cargar la nueva educacion",
             error
         });
     }

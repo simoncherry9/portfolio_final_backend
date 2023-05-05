@@ -24,7 +24,7 @@ export const newEducacion = async (req: Request, res: Response) => {
         })
     } catch (error) {
         res.status(400).json({
-            msg: "Ocurrio un error al querer cargar la nueva aptitud",
+            msg: "Ocurrio un error al querer cargar la nueva educacion",
             error
         })
     }
