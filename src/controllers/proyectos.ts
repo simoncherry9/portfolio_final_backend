@@ -10,13 +10,15 @@ export const getProyectos = async (req: Request, res: Response) => {
 
 export const newProyecto = async (req: Request, res: Response) => {
 
-    const { name, description } = req.body;
+    const { name, description, tecnologias, linkRepo} = req.body;
 
     try {
         // Guardamos el proyecto en la base de datos
         await Proyectos.create({
             name: name,
-            description: description
+            description: description,
+            tecnologias: tecnologias,
+            linkRepo: linkRepo
         })
         res.json({
             msg: "Proyecto " + name + " cargado de manera exitosa",

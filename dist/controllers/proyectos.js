@@ -17,12 +17,14 @@ const getProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getProyectos = getProyectos;
 const newProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, description } = req.body;
+    const { name, description, tecnologias, linkRepo } = req.body;
     try {
         // Guardamos el proyecto en la base de datos
         yield proyectos_1.Proyectos.create({
             name: name,
-            description: description
+            description: description,
+            tecnologias: tecnologias,
+            linkRepo: linkRepo
         });
         res.json({
             msg: "Proyecto " + name + " cargado de manera exitosa",
