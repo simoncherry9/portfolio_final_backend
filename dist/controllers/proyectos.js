@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProyecto = exports.newProyecto = exports.getProyectos = void 0;
+exports.deleteProyectos = exports.newProyecto = exports.getProyectos = void 0;
 const proyectos_1 = require("../models/proyectos");
 const getProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProyectos = yield proyectos_1.Proyectos.findAll();
@@ -38,7 +38,7 @@ const newProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.newProyecto = newProyecto;
-const deleteProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.body;
     if (!id) {
         return { msg: 'ID no escpecificada', payload: 1 };
@@ -49,10 +49,11 @@ const deleteProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 id: id
             }
         });
-        res.json({ msg: "Aptitud eliminada" });
+        res.json({ msg: "Proyecto eliminado" });
     }
     catch (e) {
+        console.error(e);
         return false;
     }
 });
-exports.deleteProyecto = deleteProyecto;
+exports.deleteProyectos = deleteProyectos;
