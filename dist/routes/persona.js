@@ -10,4 +10,5 @@ const router = (0, express_1.Router)();
 // Protegiendo ruta /personas
 router.get('/', persona_1.getPersonas);
 router.post('/', validate_token_1.default, persona_1.newPersona);
+router.delete('/', validate_token_1.default, persona_1.deletePersona);
 exports.default = router;

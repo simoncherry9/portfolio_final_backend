@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newEducacion = exports.getEducaciones = void 0;
+exports.deleteEducacion = exports.newEducacion = exports.getEducaciones = void 0;
 const educacion_1 = require("../models/educacion");
 const getEducaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listEducaciones = yield educacion_1.Educacion.findAll();
@@ -37,3 +37,21 @@ const newEducacion = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.newEducacion = newEducacion;
+const deleteEducacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    if (!id) {
+        return { msg: 'ID no escpecificada', payload: 1 };
+    }
+    try {
+        yield educacion_1.Educacion.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.json({ msg: "Educacion eliminada" });
+    }
+    catch (e) {
+        return false;
+    }
+});
+exports.deleteEducacion = deleteEducacion;

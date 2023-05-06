@@ -35,3 +35,22 @@ export const newPersona = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const  deletePersona = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+    if (!id) {
+        return {msg: 'ID no escpecificada', payload: 1};
+    }
+
+    try {
+        await Persona.destroy({
+            where: {
+                id: id
+            }
+        }); res.json({msg: "Persona eliminada"})
+    } catch (e) {
+        return false;
+    }
+}
+

@@ -10,4 +10,5 @@ const router = (0, express_1.Router)();
 // Protegiendo ruta /educacion
 router.get('/', educacion_1.getEducaciones);
 router.post('/', validate_token_1.default, educacion_1.newEducacion);
+router.delete('/', validate_token_1.default, educacion_1.deleteEducacion);
 exports.default = router;

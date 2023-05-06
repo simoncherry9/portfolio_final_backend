@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newAptitud = exports.getAptitudes = void 0;
+exports.deleteAptitud = exports.newAptitud = exports.getAptitudes = void 0;
 const aptitudes_1 = require("../models/aptitudes");
 const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listAptitudes = yield aptitudes_1.Aptitudes.findAll();
@@ -36,3 +36,22 @@ const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.newAptitud = newAptitud;
+// Eliminar aptitud
+const deleteAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    if (!id) {
+        return { msg: 'ID no escpecificada', payload: 1 };
+    }
+    try {
+        yield aptitudes_1.Aptitudes.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.json({ msg: "Aptitud eliminada" });
+    }
+    catch (e) {
+        return false;
+    }
+});
+exports.deleteAptitud = deleteAptitud;

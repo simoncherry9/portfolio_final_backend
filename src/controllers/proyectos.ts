@@ -30,3 +30,21 @@ export const newProyecto = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const  deleteProyecto = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+    if (!id) {
+        return {msg: 'ID no escpecificada', payload: 1};
+    }
+
+    try {
+        await Proyectos.destroy({
+            where: {
+                id: id
+            }
+        }); res.json({msg: "Aptitud eliminada"})
+    } catch (e) {
+        return false;
+    }
+}

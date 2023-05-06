@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newExperiencia = exports.getExperiencias = void 0;
+exports.deleteExperiencia = exports.newExperiencia = exports.getExperiencias = void 0;
 const experiencia_1 = require("../models/experiencia");
 const getExperiencias = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listExperiencias = yield experiencia_1.Experiencia.findAll();
@@ -38,3 +38,21 @@ const newExperiencia = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.newExperiencia = newExperiencia;
+const deleteExperiencia = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    if (!id) {
+        return { msg: 'ID no escpecificada', payload: 1 };
+    }
+    try {
+        yield experiencia_1.Experiencia.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.json({ msg: "Experiencia eliminada" });
+    }
+    catch (e) {
+        return false;
+    }
+});
+exports.deleteExperiencia = deleteExperiencia;

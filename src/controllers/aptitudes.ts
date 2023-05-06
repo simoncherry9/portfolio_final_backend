@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, application } from 'express';
 import { Aptitudes } from '../models/aptitudes';
 
 export const getAptitudes = async (req: Request, res: Response) => {
@@ -26,5 +26,24 @@ export const newAptitud = async (req: Request, res: Response) => {
             msg: "Ocurrio un error al querer cargar la nueva aptitud",
             error
         })
+    }
+}
+
+// Eliminar aptitud
+export const  deleteAptitud = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+    if (!id) {
+        return {msg: 'ID no escpecificada', payload: 1};
+    }
+
+    try {
+        await Aptitudes.destroy({
+            where: {
+                id: id
+            }
+        }); res.json({msg: "Aptitud eliminada"})
+    } catch (e) {
+        return false;
     }
 }

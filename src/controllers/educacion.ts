@@ -29,3 +29,21 @@ export const newEducacion = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const  deleteEducacion = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+    if (!id) {
+        return {msg: 'ID no escpecificada', payload: 1};
+    }
+
+    try {
+        await Educacion.destroy({
+            where: {
+                id: id
+            }
+        }); res.json({msg: "Educacion eliminada"})
+    } catch (e) {
+        return false;
+    }
+}

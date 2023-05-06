@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newPersona = exports.getPersonas = void 0;
+exports.deletePersona = exports.newPersona = exports.getPersonas = void 0;
 const persona_1 = require("../models/persona");
 const getPersonas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listPersonas = yield persona_1.Persona.findAll();
@@ -43,3 +43,21 @@ const newPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.newPersona = newPersona;
+const deletePersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.body;
+    if (!id) {
+        return { msg: 'ID no escpecificada', payload: 1 };
+    }
+    try {
+        yield persona_1.Persona.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.json({ msg: "Persona eliminada" });
+    }
+    catch (e) {
+        return false;
+    }
+});
+exports.deletePersona = deletePersona;
