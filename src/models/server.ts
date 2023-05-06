@@ -2,7 +2,6 @@ import express, { Application } from 'express';
 import cors from 'cors'
 
 // Importamos rutas
-import routesProduct from '../routes/product';
 import routesAptitudes from '../routes/aptitudes';
 import routesUser from '../routes/user';
 import routesExperiencia from '../routes/experiencia'
@@ -12,7 +11,6 @@ import routesProyectos from '../routes/proyectos';
 
 // Importamos modelos
 import { Proyectos } from './proyectos';
-import { Product } from './product';
 import { Educacion } from './educacion';
 import { User } from './user';
 import { Persona } from './persona';
@@ -40,7 +38,6 @@ class Server {
     }
 
     routes() {
-        this.app.use('/api/products', routesProduct);
         this.app.use('/api/users', routesUser);
         this.app.use('/api/persona', routesPersona);
         this.app.use('/api/aptitudes', routesAptitudes);
@@ -64,7 +61,6 @@ class Server {
             await Experiencia.sync()
             await Aptitudes.sync()
             await Persona.sync()
-            await Product.sync()
             await User.sync()
         } catch (error) {
             console.log("La conección con la base de datos a fracasado.", error);

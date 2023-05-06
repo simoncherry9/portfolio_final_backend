@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 // Importamos rutas
-const product_1 = __importDefault(require("../routes/product"));
 const aptitudes_1 = __importDefault(require("../routes/aptitudes"));
 const user_1 = __importDefault(require("../routes/user"));
 const experiencia_1 = __importDefault(require("../routes/experiencia"));
@@ -24,7 +23,6 @@ const educacion_1 = __importDefault(require("../routes/educacion"));
 const proyectos_1 = __importDefault(require("../routes/proyectos"));
 // Importamos modelos
 const proyectos_2 = require("./proyectos");
-const product_2 = require("./product");
 const educacion_2 = require("./educacion");
 const user_2 = require("./user");
 const persona_2 = require("./persona");
@@ -45,7 +43,6 @@ class Server {
         });
     }
     routes() {
-        this.app.use('/api/products', product_1.default);
         this.app.use('/api/users', user_1.default);
         this.app.use('/api/persona', persona_1.default);
         this.app.use('/api/aptitudes', aptitudes_1.default);
@@ -67,7 +64,6 @@ class Server {
                 yield experiencia_2.Experiencia.sync();
                 yield aptitudes_2.Aptitudes.sync();
                 yield persona_2.Persona.sync();
-                yield product_2.Product.sync();
                 yield user_2.User.sync();
             }
             catch (error) {
