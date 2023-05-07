@@ -8,6 +8,7 @@ import routesExperiencia from '../routes/experiencia'
 import routesPersona from '../routes/persona';
 import routesEducacion from '../routes/educacion';
 import routesProyectos from '../routes/proyectos';
+import routesFormulario from '../routes/formulario';
 
 // Importamos modelos
 import { Proyectos } from './proyectos';
@@ -15,7 +16,8 @@ import { Educacion } from './educacion';
 import { User } from './user';
 import { Persona } from './persona';
 import { Aptitudes } from './aptitudes';
-import { Experiencia } from './experiencia'
+import { Experiencia } from './experiencia';
+import { Formulario } from './formulario';
 
 class Server {
 
@@ -38,6 +40,7 @@ class Server {
     }
 
     routes() {
+        this.app.use('/api/formulario', routesFormulario);
         this.app.use('/api/users', routesUser);
         this.app.use('/api/persona', routesPersona);
         this.app.use('/api/aptitudes', routesAptitudes);
@@ -62,6 +65,7 @@ class Server {
             await Aptitudes.sync()
             await Persona.sync()
             await User.sync()
+            await Formulario.sync()
         } catch (error) {
             console.log("La conección con la base de datos a fracasado.", error);
         }

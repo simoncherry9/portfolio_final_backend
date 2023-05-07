@@ -1,4 +1,4 @@
-import { Request, Response, application } from 'express';
+import { Request, Response } from 'express';
 import { Aptitudes } from '../models/aptitudes';
 
 export const getAptitudes = async (req: Request, res: Response) => {

@@ -21,6 +21,7 @@ const experiencia_1 = __importDefault(require("../routes/experiencia"));
 const persona_1 = __importDefault(require("../routes/persona"));
 const educacion_1 = __importDefault(require("../routes/educacion"));
 const proyectos_1 = __importDefault(require("../routes/proyectos"));
+const formulario_1 = __importDefault(require("../routes/formulario"));
 // Importamos modelos
 const proyectos_2 = require("./proyectos");
 const educacion_2 = require("./educacion");
@@ -28,6 +29,7 @@ const user_2 = require("./user");
 const persona_2 = require("./persona");
 const aptitudes_2 = require("./aptitudes");
 const experiencia_2 = require("./experiencia");
+const formulario_2 = require("./formulario");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -43,6 +45,7 @@ class Server {
         });
     }
     routes() {
+        this.app.use('/api/formulario', formulario_1.default);
         this.app.use('/api/users', user_1.default);
         this.app.use('/api/persona', persona_1.default);
         this.app.use('/api/aptitudes', aptitudes_1.default);
@@ -65,6 +68,7 @@ class Server {
                 yield aptitudes_2.Aptitudes.sync();
                 yield persona_2.Persona.sync();
                 yield user_2.User.sync();
+                yield formulario_2.Formulario.sync();
             }
             catch (error) {
                 console.log("La conección con la base de datos a fracasado.", error);
