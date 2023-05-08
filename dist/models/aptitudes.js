@@ -17,5 +17,8 @@ exports.Aptitudes = connection_1.default.define('aptitudes', {
     },
     description: {
         type: sequelize_1.DataTypes.STRING
+    },
+    porcentaje: {
+        type: sequelize_1.DataTypes.DECIMAL
     }
 });

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteAptitud = exports.newAptitud = exports.getAptitudes = void 0;
+exports.newAptitud = exports.getAptitudes = void 0;
 const aptitudes_1 = require("../models/aptitudes");
 const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listAptitudes = yield aptitudes_1.Aptitudes.findAll();
@@ -17,12 +17,13 @@ const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getAptitudes = getAptitudes;
 const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, description } = req.body;
+    const { name, description, porcentaje } = req.body;
     try {
         // Guardamos el usuario en la base de datos
         yield aptitudes_1.Aptitudes.create({
             name: name,
-            description: description
+            description: description,
+            porcentaje: porcentaje
         });
         res.json({
             msg: "Aptitud " + name + " cargada de manera exitosa",
@@ -36,22 +37,3 @@ const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.newAptitud = newAptitud;
-// Eliminar aptitud
-const deleteAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
-    if (!id) {
-        return { msg: 'ID no escpecificada', payload: 1 };
-    }
-    try {
-        yield aptitudes_1.Aptitudes.destroy({
-            where: {
-                id: id
-            }
-        });
-        res.json({ msg: "Aptitud eliminada" });
-    }
-    catch (e) {
-        return false;
-    }
-});
-exports.deleteAptitud = deleteAptitud;

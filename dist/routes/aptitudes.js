@@ -10,5 +10,4 @@ const router = (0, express_1.Router)();
 // Protegiendo ruta /aptitudes
 router.get('/', aptitudes_1.getAptitudes);
 router.post('/', validate_token_1.default, aptitudes_1.newAptitud);
-router.delete('/', validate_token_1.default, aptitudes_1.deleteAptitud);
 exports.default = router;

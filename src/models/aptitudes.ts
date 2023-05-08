@@ -12,5 +12,8 @@ export const Aptitudes = sequelize.define('aptitudes', {
     },
     description: {
         type: DataTypes.STRING
+    },
+    porcentaje: {
+        type: DataTypes.DECIMAL
     }
 })

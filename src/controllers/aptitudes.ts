@@ -10,13 +10,14 @@ export const getAptitudes = async (req: Request, res: Response) => {
 
 export const newAptitud = async (req: Request, res: Response) => {
 
-    const { name, description } = req.body;
+    const { name, description, porcentaje } = req.body;
 
     try {
         // Guardamos el usuario en la base de datos
         await Aptitudes.create({
             name: name,
-            description: description
+            description: description,
+            porcentaje: porcentaje
         })
         res.json({
             msg: "Aptitud " + name + " cargada de manera exitosa",
@@ -26,24 +27,5 @@ export const newAptitud = async (req: Request, res: Response) => {
             msg: "Ocurrio un error al querer cargar la nueva aptitud",
             error
         })
-    }
-}
-
-// Eliminar aptitud
-export const  deleteAptitud = async (req: Request, res: Response) => {
-
-    const { id } = req.body;
-    if (!id) {
-        return {msg: 'ID no escpecificada', payload: 1};
-    }
-
-    try {
-        await Aptitudes.destroy({
-            where: {
-                id: id
-            }
-        }); res.json({msg: "Aptitud eliminada"})
-    } catch (e) {
-        return false;
     }
 }
