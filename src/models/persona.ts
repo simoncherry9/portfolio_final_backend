@@ -1,37 +1,71 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../db/connection";
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../db/connection';
 
-export const Persona = sequelize.define('persona', {
+interface PersonaAttributes {
+  id: number;
+  nombre: string;
+  apellido: string;
+  direccion: string;
+  fechaNacimiento: string;
+  estadoCivil: string;
+  email: string;
+  telefono: string;
+  profesion: string;
+  rol: string;
+}
+
+class Persona extends Model<PersonaAttributes> implements PersonaAttributes {
+  public id!: number;
+  public nombre!: string;
+  public apellido!: string;
+  public direccion!: string;
+  public fechaNacimiento!: string;
+  public estadoCivil!: string;
+  public email!: string;
+  public telefono!: string;
+  public profesion!: string;
+  public rol!: string;
+}
+
+Persona.init(
+  {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     nombre: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     apellido: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     direccion: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     fechaNacimiento: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     estadoCivil: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     email: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     telefono: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     profesion: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     rol: {
-        type: DataTypes.STRING
-    }
-})
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    modelName: 'Persona',
+  }
+);
+
+export default Persona;

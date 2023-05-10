@@ -8,56 +8,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePersona = exports.newPersona = exports.getPersonas = void 0;
-const persona_1 = require("../models/persona");
+exports.editPersona = exports.getPersonas = void 0;
+const persona_1 = __importDefault(require("../models/persona"));
 const getPersonas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const listPersonas = yield persona_1.Persona.findAll();
+    const listPersonas = yield persona_1.default.findAll();
     res.json(listPersonas);
 });
 exports.getPersonas = getPersonas;
-const newPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const editPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     const { nombre, apellido, direccion, fechaNacimiento, estadoCivil, email, telefono, profesion, rol } = req.body;
     try {
-        // Guardamos el usuario en la base de datos
-        yield persona_1.Persona.create({
-            nombre: nombre,
-            apellido: apellido,
-            direccion: direccion,
-            fechaNacimiento: fechaNacimiento,
-            estadoCivil: estadoCivil,
-            email: email,
-            telefono: telefono,
-            profesion: profesion,
-            rol: rol,
-        });
+        const persona = yield persona_1.default.findByPk(id);
+        if (!persona) {
+            return res.status(404).json({
+                msg: "No se encontró la persona con el ID proporcionado",
+            });
+        }
+        persona.nombre = nombre;
+        persona.apellido = apellido;
+        persona.direccion = direccion;
+        persona.fechaNacimiento = fechaNacimiento;
+        persona.estadoCivil = estadoCivil;
+        persona.email = email;
+        persona.telefono = telefono;
+        persona.profesion = profesion;
+        persona.rol = rol;
+        yield persona.save();
         res.json({
-            msg: "Persona " + nombre + " cargada de manera exitosa",
+            msg: "Persona actualizada correctamente",
+            persona,
         });
     }
     catch (error) {
         res.status(400).json({
-            msg: "Ocurrio un error al querer cargar la nueva persona",
-            error
+            msg: "Ocurrió un error al intentar actualizar la persona",
+            error,
         });
     }
 });
-exports.newPersona = newPersona;
-const deletePersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
-    if (!id) {
-        return { msg: 'ID no escpecificada', payload: 1 };
-    }
-    try {
-        yield persona_1.Persona.destroy({
-            where: {
-                id: id
-            }
-        });
-        res.json({ msg: "Persona eliminada" });
-    }
-    catch (e) {
-        return false;
-    }
-});
-exports.deletePersona = deletePersona;
+exports.editPersona = editPersona;

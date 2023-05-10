@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Persona } from '../models/persona';
+import  Persona  from '../models/persona';
 
 export const getPersonas = async (req: Request, res: Response) => {
     const listPersonas = await Persona.findAll();
@@ -8,49 +8,39 @@ export const getPersonas = async (req: Request, res: Response) => {
 
 }
 
-export const newPersona = async (req: Request, res: Response) => {
-
+export const editPersona = async (req: Request, res: Response) => {
+    const { id } = req.params;
     const { nombre, apellido, direccion, fechaNacimiento, estadoCivil, email, telefono, profesion, rol } = req.body;
-
+  
     try {
-        // Guardamos el usuario en la base de datos
-        await Persona.create({
-            nombre: nombre,
-            apellido: apellido,
-            direccion: direccion,
-            fechaNacimiento: fechaNacimiento,
-            estadoCivil: estadoCivil,
-            email: email,
-            telefono: telefono,
-            profesion: profesion,
-            rol: rol,
-        })
-        res.json({
-            msg: "Persona " + nombre + " cargada de manera exitosa",
-        })
+      const persona = await Persona.findByPk(id);
+  
+      if (!persona) {
+        return res.status(404).json({
+          msg: "No se encontró la persona con el ID proporcionado",
+        });
+      }
+  
+      persona.nombre = nombre;
+      persona.apellido = apellido;
+      persona.direccion = direccion;
+      persona.fechaNacimiento = fechaNacimiento;
+      persona.estadoCivil = estadoCivil;
+      persona.email = email;
+      persona.telefono = telefono;
+      persona.profesion = profesion;
+      persona.rol = rol;
+  
+      await persona.save();
+  
+      res.json({
+        msg: "Persona actualizada correctamente",
+        persona,
+      });
     } catch (error) {
-        res.status(400).json({
-            msg: "Ocurrio un error al querer cargar la nueva persona",
-            error
-        })
+      res.status(400).json({
+        msg: "Ocurrió un error al intentar actualizar la persona",
+        error,
+      });
     }
-}
-
-export const  deletePersona = async (req: Request, res: Response) => {
-
-    const { id } = req.body;
-    if (!id) {
-        return {msg: 'ID no escpecificada', payload: 1};
-    }
-
-    try {
-        await Persona.destroy({
-            where: {
-                id: id
-            }
-        }); res.json({msg: "Persona eliminada"})
-    } catch (e) {
-        return false;
-    }
-}
-
+  };
