@@ -38,20 +38,26 @@ const newEducacion = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.newEducacion = newEducacion;
 const deleteEducacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
-    if (!id) {
-        return { msg: 'ID no escpecificada', payload: 1 };
-    }
+    const { id } = req.params;
     try {
-        yield educacion_1.Educacion.destroy({
-            where: {
-                id: id
-            }
+        // Buscamos la aptitud por su ID
+        const educacion = yield educacion_1.Educacion.findByPk(id);
+        if (!educacion) {
+            return res.status(404).json({
+                msg: "No se encontró la educacion con el ID proporcionado"
+            });
+        }
+        // Eliminamos la aptitud
+        yield educacion.destroy();
+        res.json({
+            msg: "Educacion eliminada correctamente"
         });
-        res.json({ msg: "Educacion eliminada" });
     }
-    catch (e) {
-        return false;
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrió un error al intentar eliminar la educacion",
+            error
+        });
     }
 });
 exports.deleteEducacion = deleteEducacion;

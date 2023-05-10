@@ -7,6 +7,6 @@ const router = Router();
 // Protegiendo ruta /educacion
 router.get('/',  getEducaciones)
 router.post('/', validateToken, newEducacion);
-router.delete('/', validateToken, deleteEducacion)
+router.delete('/:id', validateToken, deleteEducacion)
 
 export default router;
