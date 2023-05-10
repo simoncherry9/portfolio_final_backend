@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProyectos = exports.newProyecto = exports.getProyectos = void 0;
+exports.deleteProyecto = exports.newProyecto = exports.getProyectos = void 0;
 const proyectos_1 = require("../models/proyectos");
 const getProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProyectos = yield proyectos_1.Proyectos.findAll();
@@ -38,22 +38,27 @@ const newProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.newProyecto = newProyecto;
-const deleteProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
-    if (!id) {
-        return { msg: 'ID no escpecificada', payload: 1 };
-    }
+const deleteProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        yield proyectos_1.Proyectos.destroy({
-            where: {
-                id: id
-            }
+        // Buscamos la aptitud por su ID
+        const proyecto = yield proyectos_1.Proyectos.findByPk(id);
+        if (!proyecto) {
+            return res.status(404).json({
+                msg: "No se encontró el proyecto con el ID proporcionado"
+            });
+        }
+        // Eliminamos la aptitud
+        yield proyecto.destroy();
+        res.json({
+            msg: "Proyecto eliminado correctamente"
         });
-        res.json({ msg: "Proyecto eliminado" });
     }
-    catch (e) {
-        console.error(e);
-        return false;
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrió un error al intentar eliminar el proyectod",
+            error
+        });
     }
 });
-exports.deleteProyectos = deleteProyectos;
+exports.deleteProyecto = deleteProyecto;

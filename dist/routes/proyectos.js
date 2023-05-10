@@ -10,5 +10,5 @@ const router = (0, express_1.Router)();
 // Protegiendo ruta /proyectos
 router.get('/', proyectos_1.getProyectos);
 router.post('/', validate_token_1.default, proyectos_1.newProyecto);
-router.delete('/', validate_token_1.default, proyectos_1.deleteProyectos);
+router.delete('/:id', validate_token_1.default, proyectos_1.deleteProyecto);
 exports.default = router;
