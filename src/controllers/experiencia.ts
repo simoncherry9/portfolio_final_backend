@@ -31,20 +31,29 @@ export const newExperiencia = async (req: Request, res: Response) => {
     }
 }
 
-export const  deleteExperiencia = async (req: Request, res: Response) => {
-
-    const { id } = req.body;
-    if (!id) {
-        return {msg: 'ID no escpecificada', payload: 1};
-    }
+export const deleteExperiencia = async (req: Request, res: Response) => {
+    const { id } = req.params;
 
     try {
-        await Experiencia.destroy({
-            where: {
-                id: id
-            }
-        }); res.json({msg: "Experiencia eliminada"})
-    } catch (e) {
-        return false;
+        // Buscamos la aptitud por su ID
+        const experiencia = await Experiencia.findByPk(id);
+
+        if (!experiencia) {
+            return res.status(404).json({
+                msg: "No se encontró la educacion con el ID proporcionado"
+            });
+        }
+
+        // Eliminamos la aptitud
+        await experiencia.destroy();
+
+        res.json({
+            msg: "Educacion eliminada correctamente"
+        });
+    } catch (error) {
+        res.status(400).json({
+            msg: "Ocurrió un error al intentar eliminar la educacion",
+            error
+        });
     }
 }

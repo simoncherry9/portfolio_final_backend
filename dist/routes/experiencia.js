@@ -10,5 +10,5 @@ const router = (0, express_1.Router)();
 // Protegiendo ruta /experiencia
 router.get('/', experiencia_1.getExperiencias);
 router.post('/', validate_token_1.default, experiencia_1.newExperiencia);
-router.delete('/', validate_token_1.default, experiencia_1.deleteExperiencia);
+router.delete('/:id', validate_token_1.default, experiencia_1.deleteExperiencia);
 exports.default = router;

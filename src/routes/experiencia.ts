@@ -7,7 +7,7 @@ const router = Router();
 // Protegiendo ruta /experiencia
 router.get('/',  getExperiencias)
 router.post('/', validateToken, newExperiencia);
-router.delete('/', validateToken, deleteExperiencia);
+router.delete('/:id', validateToken, deleteExperiencia);
 
 
 export default router;
