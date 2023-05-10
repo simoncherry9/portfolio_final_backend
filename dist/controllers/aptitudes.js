@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newAptitud = exports.getAptitudes = void 0;
+exports.deleteAptitud = exports.newAptitud = exports.getAptitudes = void 0;
 const aptitudes_1 = require("../models/aptitudes");
 const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listAptitudes = yield aptitudes_1.Aptitudes.findAll();
@@ -37,3 +37,27 @@ const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.newAptitud = newAptitud;
+const deleteAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        // Buscamos la aptitud por su ID
+        const aptitud = yield aptitudes_1.Aptitudes.findByPk(id);
+        if (!aptitud) {
+            return res.status(404).json({
+                msg: "No se encontró la aptitud con el ID proporcionado"
+            });
+        }
+        // Eliminamos la aptitud
+        yield aptitud.destroy();
+        res.json({
+            msg: "Aptitud eliminada correctamente"
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            msg: "Ocurrió un error al intentar eliminar la aptitud",
+            error
+        });
+    }
+});
+exports.deleteAptitud = deleteAptitud;
