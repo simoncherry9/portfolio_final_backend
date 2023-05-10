@@ -10,14 +10,15 @@ export const getAptitudes = async (req: Request, res: Response) => {
 
 export const newAptitud = async (req: Request, res: Response) => {
 
-    const { name, description, porcentaje } = req.body;
+    const { name, description, porcentaje, color } = req.body;
 
     try {
         // Guardamos el usuario en la base de datos
         await Aptitudes.create({
             name: name,
             description: description,
-            porcentaje: porcentaje
+            porcentaje: porcentaje,
+            color: color
         })
         res.json({
             msg: "Aptitud " + name + " cargada de manera exitosa",

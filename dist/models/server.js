@@ -26,7 +26,7 @@ const formulario_1 = __importDefault(require("../routes/formulario"));
 const proyectos_2 = require("./proyectos");
 const educacion_2 = require("./educacion");
 const user_2 = require("./user");
-const persona_2 = require("./persona");
+const persona_2 = __importDefault(require("./persona"));
 const aptitudes_2 = require("./aptitudes");
 const experiencia_2 = require("./experiencia");
 const formulario_2 = require("./formulario");
@@ -66,7 +66,7 @@ class Server {
                 yield educacion_2.Educacion.sync();
                 yield experiencia_2.Experiencia.sync();
                 yield aptitudes_2.Aptitudes.sync();
-                yield persona_2.Persona.sync();
+                yield persona_2.default.sync();
                 yield user_2.User.sync();
                 yield formulario_2.Formulario.sync();
             }

@@ -17,13 +17,14 @@ const getAptitudes = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getAptitudes = getAptitudes;
 const newAptitud = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, description, porcentaje } = req.body;
+    const { name, description, porcentaje, color } = req.body;
     try {
         // Guardamos el usuario en la base de datos
         yield aptitudes_1.Aptitudes.create({
             name: name,
             description: description,
-            porcentaje: porcentaje
+            porcentaje: porcentaje,
+            color: color
         });
         res.json({
             msg: "Aptitud " + name + " cargada de manera exitosa",

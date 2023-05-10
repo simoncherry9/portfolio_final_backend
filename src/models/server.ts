@@ -14,7 +14,7 @@ import routesFormulario from '../routes/formulario';
 import { Proyectos } from './proyectos';
 import { Educacion } from './educacion';
 import { User } from './user';
-import { Persona } from './persona';
+import  Persona  from './persona';
 import { Aptitudes } from './aptitudes';
 import { Experiencia } from './experiencia';
 import { Formulario } from './formulario';
