@@ -1,0 +1,13 @@
+# fly.toml app configuration file generated for apiportfolio on 2023-05-11T12:07:21-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "apiportfolio"
+primary_region = "scl"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
